@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -9,6 +12,7 @@ import '../models/sortiment.dart';
 
 class WineProvider extends ChangeNotifier {
   static const _boxName = 'sezoane';
+  static const _seedDoneKey = '_istoricPreluat';
   final _uuid = const Uuid();
 
   Box? _box;
@@ -26,8 +30,44 @@ class WineProvider extends ChangeNotifier {
         _sezoane[an] = Sezon.fromMap(Map<String, dynamic>.from(raw));
       }
     }
+    // La prima pornire pe un dispozitiv nou, preia o singură dată istoricul
+    // real (2017-2024 + 2026) din vin.xlsx, salvat ca asset la construirea
+    // aplicației — altfel fiecare instalare nouă ar porni complet goală.
+    if (_box!.get(_seedDoneKey) != true) {
+      await _preiaIstoric();
+      await _box!.put(_seedDoneKey, true);
+    }
     _sezoane.putIfAbsent(anCurent, () => Sezon(an: anCurent));
     notifyListeners();
+  }
+
+  Future<void> _preiaIstoric() async {
+    final raw = await rootBundle.loadString('assets/istoric_vin.json');
+    final data = jsonDecode(raw) as Map<String, dynamic>;
+    for (final entry in data.entries) {
+      final an = int.parse(entry.key);
+      // Nu suprascrie un an pe care userul l-a modificat deja manual.
+      if (_sezoane.containsKey(an)) continue;
+      final yearData = entry.value as Map<String, dynamic>;
+      final cumparatori = (yearData['cumparatori'] as List)
+          .map(
+            (c) => Cumparator(
+              id: _uuid.v4(),
+              nume: c['nume'] as String,
+              kgFeteasca: (c['kgFeteasca'] as num).toDouble(),
+              kgSavignion: (c['kgSavignion'] as num).toDouble(),
+              kgRoze: (c['kgRoze'] as num).toDouble(),
+            ),
+          )
+          .toList();
+      final sezon = Sezon(
+        an: an,
+        pricePerKg: (yearData['pricePerKg'] as num).toDouble(),
+        cumparatori: cumparatori,
+      );
+      _sezoane[an] = sezon;
+      await _box!.put(an, sezon.toMap());
+    }
   }
 
   /// Sezonul activ, mereu al anului calendaristic curent — singurul editabil.

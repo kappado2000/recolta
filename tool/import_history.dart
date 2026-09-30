@@ -1,3 +1,4 @@
+// ignore_for_file: avoid_print
 import 'dart:convert';
 import 'dart:io';
 
@@ -8,7 +9,8 @@ import 'package:uuid/uuid.dart';
 /// Hive reală a aplicației. Rulare: `dart run tool/import_history.dart`.
 Future<void> main() async {
   final jsonFile = File('tool/istoric_vin.json');
-  final data = jsonDecode(await jsonFile.readAsString()) as Map<String, dynamic>;
+  final data =
+      jsonDecode(await jsonFile.readAsString()) as Map<String, dynamic>;
 
   Hive.init(r'C:\Users\kappa\Documents');
   final box = await Hive.openBox('sezoane');

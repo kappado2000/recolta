@@ -1,0 +1,959 @@
+{
+  "2017": {
+    "pricePerKg": 4.5,
+    "cumparatori": [
+      {
+        "nume": "Adi",
+        "kgFeteasca": 20.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata",
+        "kgFeteasca": 130.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V",
+        "kgFeteasca": 140.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Pompei",
+        "kgFeteasca": 100.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "electrician",
+        "kgFeteasca": 130.0,
+        "kgSavignion": 20.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ane",
+        "kgFeteasca": 70.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Simi",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 100.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Vasile",
+        "kgFeteasca": 300.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Jon",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Enyo",
+        "kgFeteasca": 50.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Nicu",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Chelu",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Enache",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 100.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cristi",
+        "kgFeteasca": 350.0,
+        "kgSavignion": 300.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Luci",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Costel",
+        "kgFeteasca": 180.0,
+        "kgSavignion": 150.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Nelutu",
+        "kgFeteasca": 200.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Marius",
+        "kgFeteasca": 150.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      }
+    ]
+  },
+  "2018": {
+    "pricePerKg": 4.5,
+    "cumparatori": [
+      {
+        "nume": "Adi",
+        "kgFeteasca": 80.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 40.0
+      },
+      {
+        "nume": "tata",
+        "kgFeteasca": 130.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 70.0
+      },
+      {
+        "nume": "tata V",
+        "kgFeteasca": 70.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 70.0
+      },
+      {
+        "nume": "vecinul",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "electrician",
+        "kgFeteasca": 100.0,
+        "kgSavignion": 50.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ane",
+        "kgFeteasca": 70.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Simi",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Vasile",
+        "kgFeteasca": 170.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Jon",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Enyo",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Nicu",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Chelu",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 60.0
+      },
+      {
+        "nume": "Enache",
+        "kgFeteasca": 50.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cristi",
+        "kgFeteasca": 200.0,
+        "kgSavignion": 150.0,
+        "kgRoze": 150.0
+      },
+      {
+        "nume": "Luci",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Costel",
+        "kgFeteasca": 110.0,
+        "kgSavignion": 110.0,
+        "kgRoze": 110.0
+      },
+      {
+        "nume": "Nelutu",
+        "kgFeteasca": 320.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Marius",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      }
+    ]
+  },
+  "2019": {
+    "pricePerKg": 4.5,
+    "cumparatori": [
+      {
+        "nume": "Adi",
+        "kgFeteasca": 110.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 80.0
+      },
+      {
+        "nume": "tata",
+        "kgFeteasca": 120.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V",
+        "kgFeteasca": 140.0,
+        "kgSavignion": 170.0,
+        "kgRoze": 70.0
+      },
+      {
+        "nume": "vecinul Zaharie",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 60.0
+      },
+      {
+        "nume": "Simi",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Vasile",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 120.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Nicu",
+        "kgFeteasca": 130.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Chelu",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 60.0
+      },
+      {
+        "nume": "Luci",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Enache",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cristi",
+        "kgFeteasca": 300.0,
+        "kgSavignion": 150.0,
+        "kgRoze": 150.0
+      },
+      {
+        "nume": "Costel",
+        "kgFeteasca": 110.0,
+        "kgSavignion": 110.0,
+        "kgRoze": 130.0
+      },
+      {
+        "nume": "Nelutu",
+        "kgFeteasca": 350.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      }
+    ]
+  },
+  "2020": {
+    "pricePerKg": 4.5,
+    "cumparatori": [
+      {
+        "nume": "Adi",
+        "kgFeteasca": 150.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 100.0
+      },
+      {
+        "nume": "tata Simi",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ane",
+        "kgFeteasca": 130.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata Valentin",
+        "kgFeteasca": 140.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 70.0
+      },
+      {
+        "nume": "tata V - prieten",
+        "kgFeteasca": 100.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - pr.Demeter",
+        "kgFeteasca": 120.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - Stelica",
+        "kgFeteasca": 120.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - Pintea",
+        "kgFeteasca": 50.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Nicu",
+        "kgFeteasca": 150.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Enache",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Luci",
+        "kgFeteasca": 10.0,
+        "kgSavignion": 100.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Vasile",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 120.0,
+        "kgRoze": 120.0
+      },
+      {
+        "nume": "Chelu",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 60.0
+      },
+      {
+        "nume": "Simi",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 100.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cristi",
+        "kgFeteasca": 450.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 120.0
+      },
+      {
+        "nume": "Mitu",
+        "kgFeteasca": 100.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 50.0
+      },
+      {
+        "nume": "Costel",
+        "kgFeteasca": 250.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 100.0
+      },
+      {
+        "nume": "Nelutu",
+        "kgFeteasca": 350.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Mita - taxi",
+        "kgFeteasca": 240.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ovidiu Nicoara - pol.",
+        "kgFeteasca": 100.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      }
+    ]
+  },
+  "2021": {
+    "pricePerKg": 4.5,
+    "cumparatori": [
+      {
+        "nume": "Adi",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata Simi",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ane",
+        "kgFeteasca": 130.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata Valentin",
+        "kgFeteasca": 140.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - pr.Demeter",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - pr.Saplacan",
+        "kgFeteasca": 260.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - Stelica",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - pr.Jabenita",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Nicu",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Enache",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Luci",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Bebe",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Chelu",
+        "kgFeteasca": 70.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Simi",
+        "kgFeteasca": 150.0,
+        "kgSavignion": 50.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cristi",
+        "kgFeteasca": 400.0,
+        "kgSavignion": 100.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Mitu",
+        "kgFeteasca": 150.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Costel",
+        "kgFeteasca": 250.0,
+        "kgSavignion": 100.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Nelutu",
+        "kgFeteasca": 350.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Mita - taxi",
+        "kgFeteasca": 120.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ovidiu Nicoara - pol.",
+        "kgFeteasca": 100.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Moldovan Florin",
+        "kgFeteasca": 100.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Grama Sergiu",
+        "kgFeteasca": 100.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cotoi Marcel",
+        "kgFeteasca": 150.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      }
+    ]
+  },
+  "2022": {
+    "pricePerKg": 5.5,
+    "cumparatori": [
+      {
+        "nume": "Adi",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata Simi",
+        "kgFeteasca": 70.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ane",
+        "kgFeteasca": 210.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata Valentin",
+        "kgFeteasca": 140.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - pr.Demeter",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - pr.Saplacan",
+        "kgFeteasca": 240.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - aviator",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - pr.Jabenita",
+        "kgFeteasca": 140.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - Romica S",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - Codriș V",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - tetea Toader",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Dacian -  teapa",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 100.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Luci",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 80.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Chelu",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 80.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Simi",
+        "kgFeteasca": 160.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "finul Petrișor",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cristi",
+        "kgFeteasca": 240.0,
+        "kgSavignion": 200.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Mitu",
+        "kgFeteasca": 140.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Costel",
+        "kgFeteasca": 150.0,
+        "kgSavignion": 150.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Nelutu",
+        "kgFeteasca": 350.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ovidiu Nicoara - pol.",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 100.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Moldovan Florin",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Grama Sergiu",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Beica Marcel",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cernat Paul",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ujică Cristi",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 60.0,
+        "kgRoze": 0.0
+      }
+    ]
+  },
+  "2023": {
+    "pricePerKg": 5.5,
+    "cumparatori": [
+      {
+        "nume": "Adi",
+        "kgFeteasca": 100.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 70.0
+      },
+      {
+        "nume": "tata Simi",
+        "kgFeteasca": 70.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ane",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 140.0
+      },
+      {
+        "nume": "tata Valentin",
+        "kgFeteasca": 70.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 70.0
+      },
+      {
+        "nume": "tata V - Borda",
+        "kgFeteasca": 70.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 70.0
+      },
+      {
+        "nume": "Luci",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 90.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Chelu",
+        "kgFeteasca": 70.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cristi",
+        "kgFeteasca": 400.0,
+        "kgSavignion": 115.0,
+        "kgRoze": 115.0
+      },
+      {
+        "nume": "Costel",
+        "kgFeteasca": 200.0,
+        "kgSavignion": 50.0,
+        "kgRoze": 100.0
+      },
+      {
+        "nume": "Nelutu - Avram",
+        "kgFeteasca": 300.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Mitu",
+        "kgFeteasca": 450.0,
+        "kgSavignion": 50.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cernat Paul",
+        "kgFeteasca": 170.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      }
+    ]
+  },
+  "2024": {
+    "pricePerKg": 7.0,
+    "cumparatori": [
+      {
+        "nume": "Adi",
+        "kgFeteasca": 140.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata Simi",
+        "kgFeteasca": 80.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ane",
+        "kgFeteasca": 310.0,
+        "kgSavignion": 100.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata Valentin",
+        "kgFeteasca": 70.0,
+        "kgSavignion": 70.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata V - Borda",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 500.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Luci",
+        "kgFeteasca": 55.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Chelu",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cristi",
+        "kgFeteasca": 245.0,
+        "kgSavignion": 200.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Costel",
+        "kgFeteasca": 200.0,
+        "kgSavignion": 150.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Mitu",
+        "kgFeteasca": 300.0,
+        "kgSavignion": 150.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ilie",
+        "kgFeteasca": 90.0,
+        "kgSavignion": 30.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Cernat Paul",
+        "kgFeteasca": 80.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      }
+    ]
+  },
+  "2026": {
+    "pricePerKg": 6.3,
+    "cumparatori": [
+      {
+        "nume": "Adi",
+        "kgFeteasca": 100.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 70.0
+      },
+      {
+        "nume": "tata Simi",
+        "kgFeteasca": 80.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "tata Valentin",
+        "kgFeteasca": 60.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Ane",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 100.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Mitu",
+        "kgFeteasca": 450.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Paul",
+        "kgFeteasca": 80.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      },
+      {
+        "nume": "Chelu",
+        "kgFeteasca": 0.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 60.0
+      },
+      {
+        "nume": "Costel",
+        "kgFeteasca": 150.0,
+        "kgSavignion": 150.0,
+        "kgRoze": 70.0
+      },
+      {
+        "nume": "Cristi",
+        "kgFeteasca": 370.0,
+        "kgSavignion": 150.0,
+        "kgRoze": 100.0
+      },
+      {
+        "nume": "Stelică",
+        "kgFeteasca": 200.0,
+        "kgSavignion": 0.0,
+        "kgRoze": 0.0
+      }
+    ]
+  }
+}
