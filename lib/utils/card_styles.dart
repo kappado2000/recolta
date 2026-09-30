@@ -35,6 +35,12 @@ Color sortimentColor(Sortiment s) {
   }
 }
 
+/// Culoarea textului pentru chip-ul unui sortiment — maro pentru Fetească,
+/// al cărei fundal galben deschis face textul alb ilizibil; alb pentru
+/// celelalte, ale căror fundaluri sunt suficient de închise.
+Color sortimentTextColor(Sortiment s) =>
+    s == Sortiment.feteasca ? const Color(0xFF4A2C0A) : Colors.white;
+
 LinearGradient cardGradientFor(Color color) => LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,

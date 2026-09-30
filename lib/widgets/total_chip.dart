@@ -10,11 +10,16 @@ class TotalChip extends StatelessWidget {
   final String value;
   final Color color;
 
+  /// Culoarea textului — implicit alb, dar poate fi schimbată pentru
+  /// fundaluri deschise (ex. galben) unde albul nu se distinge.
+  final Color textColor;
+
   const TotalChip({
     super.key,
     required this.label,
     required this.value,
     required this.color,
+    this.textColor = Colors.white,
   });
 
   @override
@@ -32,13 +37,13 @@ class TotalChip extends StatelessWidget {
           Text(
             label,
             style: Theme.of(context).textTheme.labelSmall
-                ?.copyWith(color: Colors.white.withValues(alpha: 0.85)),
+                ?.copyWith(color: textColor.withValues(alpha: 0.85)),
           ),
           const SizedBox(height: 2),
           AmountText(
             value,
             style: Theme.of(context).textTheme.titleMedium
-                ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                ?.copyWith(color: textColor, fontWeight: FontWeight.bold),
           ),
         ],
       ),

@@ -105,6 +105,7 @@ class SeasonTotalsGrid extends StatelessWidget {
                   value:
                       '${formatNumber(provider.totalKgSortiment(sezon, s))} Kg',
                   color: sortimentColor(s),
+                  textColor: sortimentTextColor(s),
                 ),
               ),
               if (s != Sortiment.values.last) const SizedBox(width: 8),
@@ -165,6 +166,7 @@ class SeasonTotalsGridForGroup extends StatelessWidget {
                   value:
                       '${formatNumber(provider.totalKgGrup(sezon, groupId, sortiment: s))} Kg',
                   color: sortimentColor(s),
+                  textColor: sortimentTextColor(s),
                 ),
               ),
               if (s != Sortiment.values.last) const SizedBox(width: 8),

@@ -91,8 +91,11 @@ class CumparatorCard extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: 72,
+                            // Sortimentele fără cantitate rămân ca rând gol
+                            // (nu text) — cardurile păstrează aceeași
+                            // înălțime indiferent câte sortimente au valoare.
                             child: Text(
-                              s.label,
+                              cumparator.kgPentru(s) > 0 ? s.label : '',
                               style: const TextStyle(
                                 fontSize: 11,
                                 color: Colors.white,
@@ -100,7 +103,9 @@ class CumparatorCard extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '${formatNumber(cumparator.kgPentru(s))} Kg',
+                            cumparator.kgPentru(s) > 0
+                                ? '${formatNumber(cumparator.kgPentru(s))} Kg'
+                                : '',
                             style: const TextStyle(
                               fontSize: 11,
                               color: Colors.white,
