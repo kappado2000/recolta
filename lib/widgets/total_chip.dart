@@ -31,17 +31,19 @@ class TotalChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             label,
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.labelSmall
                 ?.copyWith(color: textColor.withValues(alpha: 0.85)),
           ),
           const SizedBox(height: 2),
           AmountText(
             value,
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.titleMedium
                 ?.copyWith(color: textColor, fontWeight: FontWeight.bold),
           ),
