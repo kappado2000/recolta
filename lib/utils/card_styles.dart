@@ -27,9 +27,9 @@ BoxDecoration heroCardDecoration({double radius = 20}) => BoxDecoration(
 Color sortimentColor(Sortiment s) {
   switch (s) {
     case Sortiment.feteasca:
-      return const Color(0xFFD4A017); // auriu, ca strugurii albi
+      return const Color(0xFFF3D34A); // galben deschis
     case Sortiment.savignion:
-      return const Color(0xFF6A1B58); // violet-vin
+      return const Color(0xFFB8860B); // galben închis
     case Sortiment.roze:
       return const Color(0xFFE0729B); // roz
   }
