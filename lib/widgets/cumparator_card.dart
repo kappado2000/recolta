@@ -123,7 +123,7 @@ class CumparatorCard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xFF1B5E20),
+                              color: Colors.black,
                             ),
                           ),
                         ),
@@ -132,7 +132,7 @@ class CumparatorCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF1B5E20),
+                            color: Colors.black,
                           ),
                         ),
                       ],
