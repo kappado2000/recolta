@@ -37,7 +37,10 @@ class Cumparator {
 
   double get totalKg => kgFeteasca + kgSavignion + kgRoze;
 
-  double valoare(double pricePerKg) => totalKg * pricePerKg;
+  /// Valoarea comenzii — Fetească+Savignion la [pricePerKg], Roze la
+  /// [pricePerKgRoze] (poate fi un preț diferit).
+  double valoare(double pricePerKg, double pricePerKgRoze) =>
+      (kgFeteasca + kgSavignion) * pricePerKg + kgRoze * pricePerKgRoze;
 
   /// Drojdie necesară (grame), pe baza rețetei: 40g drojdie la fiecare 200 Kg
   /// de must (echivalentul a 0,2 g/Kg), fără pasul de conversie în litri.

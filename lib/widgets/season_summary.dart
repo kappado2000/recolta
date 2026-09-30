@@ -47,7 +47,7 @@ class SeasonHeroCard extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        '${formatNumber(sezon.pricePerKg)} lei/Kg',
+                        '${formatNumber(sezon.pricePerKg)} / ${formatNumber(sezon.pricePerKgRoze)} lei/Kg',
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                           color: Colors.white.withValues(alpha: 0.9),
                         ),

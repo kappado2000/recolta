@@ -91,6 +91,12 @@ class WineProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setPricePerKgRoze(double value) {
+    sezonCurent.pricePerKgRoze = value;
+    _persist();
+    notifyListeners();
+  }
+
   // ---- Cumpărători ----
 
   void addCumparator(String nume) {
@@ -191,7 +197,10 @@ class WineProvider extends ChangeNotifier {
   double totalKg(Sezon sezon) =>
       sezon.cumparatori.fold(0, (sum, c) => sum + c.totalKg);
 
-  double totalValoare(Sezon sezon) => totalKg(sezon) * sezon.pricePerKg;
+  double totalValoare(Sezon sezon) => sezon.cumparatori.fold(
+    0,
+    (sum, c) => sum + c.valoare(sezon.pricePerKg, sezon.pricePerKgRoze),
+  );
 
   double totalDrojdie(Sezon sezon) => totalKg(sezon) * 0.2;
 
@@ -206,7 +215,10 @@ class WineProvider extends ChangeNotifier {
   }
 
   double totalValoareGrup(Sezon sezon, String groupId) =>
-      totalKgGrup(sezon, groupId) * sezon.pricePerKg;
+      membriiGrupului(sezon, groupId).fold(
+        0,
+        (sum, c) => sum + c.valoare(sezon.pricePerKg, sezon.pricePerKgRoze),
+      );
 }
 
 extension _FirstOrNull<T> on Iterable<T> {

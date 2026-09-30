@@ -42,6 +42,7 @@ class BuyersScreen extends StatelessWidget {
                   child: CumparatorCard(
                     cumparator: c,
                     pricePerKg: sezon.pricePerKg,
+                    pricePerKgRoze: sezon.pricePerKgRoze,
                     index: index + 1,
                     accentColor: memberAccentColor,
                     onTap: () =>

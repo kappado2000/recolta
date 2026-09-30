@@ -76,15 +76,39 @@ class HomeScreen extends StatelessWidget {
     final controller = TextEditingController(
       text: formatNumber(provider.sezonCurent.pricePerKg),
     );
+    final rozeController = TextEditingController(
+      text: formatNumber(provider.sezonCurent.pricePerKgRoze),
+    );
     final result = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text('Preț/Kg'),
-        content: TextField(
-          controller: controller,
-          autofocus: true,
-          keyboardType: const TextInputType.numberWithOptions(decimal: true),
-          decoration: const InputDecoration(labelText: 'Lei / Kg'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: controller,
+              autofocus: true,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              decoration: const InputDecoration(
+                labelText: 'Fetească / Savignion (Lei/Kg)',
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: rozeController,
+              keyboardType: const TextInputType.numberWithOptions(
+                decimal: true,
+              ),
+              decoration: const InputDecoration(
+                labelText: 'Roze (Lei/Kg)',
+                floatingLabelBehavior: FloatingLabelBehavior.always,
+              ),
+            ),
+          ],
         ),
         actions: [
           TextButton(
@@ -102,6 +126,12 @@ class HomeScreen extends StatelessWidget {
       final value = double.tryParse(controller.text.replaceAll(',', '.'));
       if (value != null && value >= 0) {
         provider.setPricePerKg(value);
+      }
+      final valueRoze = double.tryParse(
+        rozeController.text.replaceAll(',', '.'),
+      );
+      if (valueRoze != null && valueRoze >= 0) {
+        provider.setPricePerKgRoze(valueRoze);
       }
     }
   }

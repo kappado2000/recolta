@@ -8,6 +8,7 @@ import '../utils/formatters.dart';
 class CumparatorCard extends StatelessWidget {
   final Cumparator cumparator;
   final double pricePerKg;
+  final double pricePerKgRoze;
 
   /// Numărul curent afișat în cerc — poziția lui în lista în care apare
   /// (globală, în Cumpărători; sau locală, în lista fiecărui grup).
@@ -24,6 +25,7 @@ class CumparatorCard extends StatelessWidget {
     super.key,
     required this.cumparator,
     required this.pricePerKg,
+    required this.pricePerKgRoze,
     required this.index,
     this.accentColor = memberAccentColor,
     this.onTap,
@@ -63,7 +65,7 @@ class CumparatorCard extends StatelessWidget {
           onTap: onTap,
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: Colors.white,
+              backgroundColor: const Color(0xFFF3D34A),
               child: Text(
                 '$index',
                 style: TextStyle(
@@ -146,7 +148,7 @@ class CumparatorCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  formatLei(cumparator.valoare(pricePerKg)),
+                  formatLei(cumparator.valoare(pricePerKg, pricePerKgRoze)),
                   style: const TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

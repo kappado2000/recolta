@@ -89,6 +89,7 @@ class GroupDetailScreen extends StatelessWidget {
               (entry) => CumparatorCard(
                 cumparator: entry.$2,
                 pricePerKg: sezon.pricePerKg,
+                pricePerKgRoze: sezon.pricePerKgRoze,
                 index: entry.$1 + 1,
                 accentColor: culoareGrup,
                 onTap: () =>
