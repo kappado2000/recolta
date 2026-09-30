@@ -84,36 +84,34 @@ class CumparatorCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Doar sortimentele cu cantitate apar, unul sub altul,
+                  // fără rânduri goale între ele.
                   for (final s in Sortiment.values)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 2),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 72,
-                            // Sortimentele fără cantitate rămân ca rând gol
-                            // (nu text) — cardurile păstrează aceeași
-                            // înălțime indiferent câte sortimente au valoare.
-                            child: Text(
-                              cumparator.kgPentru(s) > 0 ? s.label : '',
+                    if (cumparator.kgPentru(s) > 0)
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 2),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 72,
+                              child: Text(
+                                s.label,
+                                style: const TextStyle(
+                                  fontSize: 11,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              '${formatNumber(cumparator.kgPentru(s))} Kg',
                               style: const TextStyle(
                                 fontSize: 11,
                                 color: Colors.white,
                               ),
                             ),
-                          ),
-                          Text(
-                            cumparator.kgPentru(s) > 0
-                                ? '${formatNumber(cumparator.kgPentru(s))} Kg'
-                                : '',
-                            style: const TextStyle(
-                              fontSize: 11,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
                   Padding(
                     padding: const EdgeInsets.only(top: 2),
                     child: Row(
@@ -125,7 +123,7 @@ class CumparatorCard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                              color: Color(0xFF1B5E20),
                             ),
                           ),
                         ),
@@ -134,7 +132,7 @@ class CumparatorCard extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                            color: Color(0xFF1B5E20),
                           ),
                         ),
                       ],
