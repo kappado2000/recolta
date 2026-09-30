@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../utils/card_styles.dart';
+import 'amount_text.dart';
 
 /// Un chip colorat cu o etichetă și o valoare — folosit pentru rubricile de
 /// total (pe sortiment, drojdie, damigene etc.).
@@ -34,7 +35,7 @@ class TotalChip extends StatelessWidget {
                 ?.copyWith(color: Colors.white.withValues(alpha: 0.85)),
           ),
           const SizedBox(height: 2),
-          Text(
+          AmountText(
             value,
             style: Theme.of(context).textTheme.titleMedium
                 ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),

@@ -5,6 +5,7 @@ import '../models/sortiment.dart';
 import '../providers/wine_provider.dart';
 import '../utils/card_styles.dart';
 import '../utils/formatters.dart';
+import 'amount_text.dart';
 import 'total_chip.dart';
 
 /// Cardul principal cu totalurile sezonului (Kg, valoare, drojdie, damigene).
@@ -59,16 +60,20 @@ class SeasonHeroCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 6),
-          Text(
-            formatLei(valoare),
-            style: Theme.of(context).textTheme.headlineSmall
-                ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+          Center(
+            child: AmountText(
+              formatLei(valoare),
+              style: Theme.of(context).textTheme.headlineSmall
+                  ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+            ),
           ),
           const SizedBox(height: 2),
-          Text(
-            'Total ${formatNumber(totalKg)} Kg',
-            style: Theme.of(context).textTheme.bodySmall
-                ?.copyWith(color: Colors.white.withValues(alpha: 0.85)),
+          Center(
+            child: Text(
+              'Total ${formatNumber(totalKg)} Kg',
+              style: Theme.of(context).textTheme.bodySmall
+                  ?.copyWith(color: Colors.white.withValues(alpha: 0.85)),
+            ),
           ),
         ],
       ),

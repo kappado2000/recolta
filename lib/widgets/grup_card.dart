@@ -5,6 +5,7 @@ import '../models/sezon.dart';
 import '../providers/wine_provider.dart';
 import '../utils/card_styles.dart';
 import '../utils/formatters.dart';
+import 'amount_text.dart';
 
 class GrupCard extends StatelessWidget {
   final Grup grup;
@@ -27,29 +28,74 @@ class GrupCard extends StatelessWidget {
     final valoare = provider.totalValoareGrup(sezon, grup.id);
     final culoare = groupColor(grup.colorIndex);
 
-    return Card(
+    return Container(
       margin: const EdgeInsets.only(bottom: 8),
-      color: culoare.withValues(alpha: 0.14),
-      shape: RoundedRectangleBorder(
+      decoration: BoxDecoration(
+        gradient: cardGradientFor(culoare),
         borderRadius: BorderRadius.circular(12),
-        side: BorderSide(color: culoare.withValues(alpha: 0.4)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.12),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
-      child: ListTile(
-        onTap: onTap,
-        leading: CircleAvatar(
-          backgroundColor: culoare,
-          child: const Icon(Icons.groups_outlined, color: Colors.white),
-        ),
-        title: Text(
-          grup.nume,
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        subtitle: Text(
-          '${membri.length} membri  ·  Total ${formatNumber(totalKg)} Kg',
-        ),
-        trailing: Text(
-          formatLei(valoare),
-          style: const TextStyle(fontWeight: FontWeight.bold),
+      clipBehavior: Clip.antiAlias,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.groups_outlined, color: Colors.white),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        grup.nume,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '${membri.length} membri',
+                      style: TextStyle(
+                        color: Colors.white.withValues(alpha: 0.85),
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Center(
+                  child: AmountText(
+                    formatLei(valoare),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Center(
+                  child: Text(
+                    'Total ${formatNumber(totalKg)} Kg',
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.85),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
