@@ -65,7 +65,11 @@ class CumparatorCard extends StatelessWidget {
           onTap: onTap,
           child: ListTile(
             leading: CircleAvatar(
-              backgroundColor: const Color(0xFFF3D34A),
+              // Galben (mai deschis) doar cât timp mustul nu a fost ridicat —
+              // odată bifat, cercul trece la gri, ca restul cardului.
+              backgroundColor: achizitionat
+                  ? Colors.grey.shade300
+                  : const Color(0xFFF7E17F),
               child: Text(
                 '$index',
                 style: TextStyle(
