@@ -143,7 +143,11 @@ class WineProvider extends ChangeNotifier {
   // ---- Grupuri ----
 
   Grup addGrup(String nume) {
-    final grup = Grup(id: _uuid.v4(), nume: nume);
+    final grup = Grup(
+      id: _uuid.v4(),
+      nume: nume,
+      colorIndex: sezonCurent.grupuri.length,
+    );
     sezonCurent.grupuri.add(grup);
     _persist();
     notifyListeners();

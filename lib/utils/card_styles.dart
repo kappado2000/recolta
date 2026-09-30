@@ -40,3 +40,23 @@ LinearGradient cardGradientFor(Color color) => LinearGradient(
   end: Alignment.bottomRight,
   colors: [color.withValues(alpha: 0.85), color],
 );
+
+/// Culoarea implicită a cardurilor de cumpărător, în lista generală
+/// (neasociată niciunui grup).
+const Color memberAccentColor = Color(0xFF6A1B58);
+
+/// Paletă de culori distincte pentru grupuri — atribuite în ordinea creării
+/// (stocată pe [Grup.colorIndex]) ca fiecare grup să-și păstreze aceeași
+/// culoare indiferent câte alte grupuri sunt șterse ulterior.
+const List<Color> groupColorPalette = [
+  Color(0xFF6A1B58), // violet-vin
+  Color(0xFF00897B), // teal
+  Color(0xFFEF6C00), // portocaliu
+  Color(0xFF3949AB), // indigo
+  Color(0xFFC2185B), // roz-închis
+  Color(0xFF2E7D32), // verde
+  Color(0xFF6D4C41), // maro
+];
+
+Color groupColor(int colorIndex) =>
+    groupColorPalette[colorIndex % groupColorPalette.length];

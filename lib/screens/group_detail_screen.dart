@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/wine_provider.dart';
+import '../utils/card_styles.dart';
+import '../utils/cumparator_actions.dart';
 import '../widgets/cumparator_card.dart';
 import '../widgets/season_summary.dart';
 
@@ -26,9 +28,12 @@ class GroupDetailScreen extends StatelessWidget {
     final membri = provider.ordonatiDupaAchizitie(
       provider.membriiGrupului(sezon, groupId),
     );
+    final culoareGrup = groupColor(grup.colorIndex);
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: culoareGrup.withValues(alpha: 0.85),
+        foregroundColor: Colors.white,
         title: Text(grup.nume),
         actions: [
           IconButton(
@@ -80,12 +85,16 @@ class GroupDetailScreen extends StatelessWidget {
               child: Text('Niciun membru în acest grup încă'),
             )
           else
-            ...membri.map(
-              (c) => CumparatorCard(
-                cumparator: c,
+            ...membri.indexed.map(
+              (entry) => CumparatorCard(
+                cumparator: entry.$2,
                 pricePerKg: sezon.pricePerKg,
+                index: entry.$1 + 1,
+                accentColor: culoareGrup,
+                onTap: () =>
+                    editCumparatorDialog(context, provider, existing: entry.$2),
                 onToggleAchizitionat: () =>
-                    provider.toggleMustAchizitionat(c.id),
+                    provider.toggleMustAchizitionat(entry.$2.id),
               ),
             ),
         ],

@@ -50,9 +50,12 @@ class SeasonHistoryDetailScreen extends StatelessWidget {
               child: Text('Niciun cumpărător'),
             )
           else
-            ...sezon.cumparatori.map(
-              (c) =>
-                  CumparatorCard(cumparator: c, pricePerKg: sezon.pricePerKg),
+            ...sezon.cumparatori.indexed.map(
+              (entry) => CumparatorCard(
+                cumparator: entry.$2,
+                pricePerKg: sezon.pricePerKg,
+                index: entry.$1 + 1,
+              ),
             ),
         ],
       ),

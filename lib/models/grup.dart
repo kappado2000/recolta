@@ -5,10 +5,21 @@ class Grup {
   final String id;
   String nume;
 
-  Grup({required this.id, required this.nume});
+  /// Index în paleta de culori (vezi `groupColor` din utils/card_styles.dart)
+  /// — fixat la creare, ca grupul să-și păstreze mereu aceeași culoare.
+  final int colorIndex;
 
-  Map<String, dynamic> toMap() => {'id': id, 'nume': nume};
+  Grup({required this.id, required this.nume, this.colorIndex = 0});
 
-  factory Grup.fromMap(Map map) =>
-      Grup(id: map['id'] as String, nume: map['nume'] as String);
+  Map<String, dynamic> toMap() => {
+    'id': id,
+    'nume': nume,
+    'colorIndex': colorIndex,
+  };
+
+  factory Grup.fromMap(Map map) => Grup(
+    id: map['id'] as String,
+    nume: map['nume'] as String,
+    colorIndex: (map['colorIndex'] as num?)?.toInt() ?? 0,
+  );
 }
