@@ -29,11 +29,22 @@ class GrupCard extends StatelessWidget {
     final incasat = provider.totalValoareIncasataGrup(sezon, grup.id);
     final restDeIncasat = valoare - incasat;
     final culoare = groupColor(grup.colorIndex);
+    // Grupul e "finalizat" când toți membrii și-au ridicat mustul — cardul
+    // trece atunci la gri închis, ca și cardurile individuale plătite.
+    final finalizat =
+        membri.isNotEmpty && membri.every((c) => c.mustAchizitionat);
+    final gradient = finalizat
+        ? LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.grey.shade400, Colors.grey.shade800],
+          )
+        : cardGradientFor(culoare);
 
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
-        gradient: cardGradientFor(culoare),
+        gradient: gradient,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -95,25 +106,29 @@ class GrupCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 8),
-                Center(
-                  child: Text(
-                    'Încasat: ${formatLei(incasat)}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                // Fără membri bifați (nimeni n-a ridicat încă mustul), nu
+                // are sens să arătăm "Încasat 0" — rămâne doar costul total.
+                if (incasat > 0) ...[
+                  const SizedBox(height: 8),
+                  Center(
+                    child: Text(
+                      'Încasat: ${formatLei(incasat)}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 2),
-                Center(
-                  child: Text(
-                    'Rest de încasat: ${formatLei(restDeIncasat)}',
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.85),
+                  const SizedBox(height: 2),
+                  Center(
+                    child: Text(
+                      'Rest de încasat: ${formatLei(restDeIncasat)}',
+                      style: TextStyle(
+                        color: Colors.white.withValues(alpha: 0.85),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ],
             ),
           ),

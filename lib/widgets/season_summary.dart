@@ -191,10 +191,9 @@ class SeasonTotalsGridForGroup extends StatelessWidget {
                 label: 'Valoare',
                 value: formatLei(valoare),
                 color: const Color(0xFF6A1B58),
-                extraLines: [
-                  formatLei(incasat),
-                  'Rest: ${formatLei(restDeIncasat)}',
-                ],
+                extraLines: incasat > 0
+                    ? [formatLei(incasat), 'Rest: ${formatLei(restDeIncasat)}']
+                    : const [],
               ),
             ),
           ],
