@@ -26,6 +26,8 @@ class GrupCard extends StatelessWidget {
     final membri = provider.membriiGrupului(sezon, grup.id);
     final totalKg = provider.totalKgGrup(sezon, grup.id);
     final valoare = provider.totalValoareGrup(sezon, grup.id);
+    final incasat = provider.totalValoareIncasataGrup(sezon, grup.id);
+    final restDeIncasat = valoare - incasat;
     final culoare = groupColor(grup.colorIndex);
 
     return Container(
@@ -88,6 +90,25 @@ class GrupCard extends StatelessWidget {
                 Center(
                   child: Text(
                     'Total ${formatNumber(totalKg)} Kg',
+                    style: TextStyle(
+                      color: Colors.white.withValues(alpha: 0.85),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Center(
+                  child: Text(
+                    'Încasat: ${formatLei(incasat)}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Center(
+                  child: Text(
+                    'Rest de încasat: ${formatLei(restDeIncasat)}',
                     style: TextStyle(
                       color: Colors.white.withValues(alpha: 0.85),
                     ),

@@ -237,4 +237,14 @@ class WineProvider extends ChangeNotifier {
         0,
         (sum, c) => sum + c.valoare(sezon.pricePerKg, sezon.pricePerKgRoze),
       );
+
+  /// Valoarea deja încasată — suma comenzilor membrilor care au ridicat
+  /// mustul (cei cu cardul închis la culoare, mutați la finalul listei).
+  double totalValoareIncasataGrup(Sezon sezon, String groupId) =>
+      membriiGrupului(sezon, groupId)
+          .where((c) => c.mustAchizitionat)
+          .fold(
+            0,
+            (sum, c) => sum + c.valoare(sezon.pricePerKg, sezon.pricePerKgRoze),
+          );
 }
