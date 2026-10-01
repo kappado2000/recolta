@@ -14,12 +14,17 @@ class TotalChip extends StatelessWidget {
   /// fundaluri deschise (ex. galben) unde albul nu se distinge.
   final Color textColor;
 
+  /// Rânduri suplimentare, mai mici, afișate sub valoarea principală (ex.
+  /// "Încasat: ...", "Rest de încasat: ...").
+  final List<String> extraLines;
+
   const TotalChip({
     super.key,
     required this.label,
     required this.value,
     required this.color,
     this.textColor = Colors.white,
+    this.extraLines = const [],
   });
 
   @override
@@ -47,6 +52,15 @@ class TotalChip extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium
                 ?.copyWith(color: textColor, fontWeight: FontWeight.bold),
           ),
+          for (final line in extraLines) ...[
+            const SizedBox(height: 2),
+            Text(
+              line,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelSmall
+                  ?.copyWith(color: textColor.withValues(alpha: 0.85)),
+            ),
+          ],
         ],
       ),
     );

@@ -154,6 +154,8 @@ class SeasonTotalsGridForGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     final totalKg = provider.totalKgGrup(sezon, groupId);
     final valoare = provider.totalValoareGrup(sezon, groupId);
+    final incasat = provider.totalValoareIncasataGrup(sezon, groupId);
+    final restDeIncasat = valoare - incasat;
 
     return Column(
       children: [
@@ -189,6 +191,10 @@ class SeasonTotalsGridForGroup extends StatelessWidget {
                 label: 'Valoare',
                 value: formatLei(valoare),
                 color: const Color(0xFF6A1B58),
+                extraLines: [
+                  'Încasat: ${formatLei(incasat)}',
+                  'Rest: ${formatLei(restDeIncasat)}',
+                ],
               ),
             ),
           ],
