@@ -54,7 +54,7 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           SeasonTotalsGrid(sezon: sezon, provider: provider),
-          const SizedBox(height: 24),
+          const SizedBox(height: 36),
           NavCard(
             icon: Icons.people_outline,
             title: 'Cumpărători',
