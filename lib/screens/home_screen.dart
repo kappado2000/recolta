@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../models/sortiment.dart';
 import '../providers/wine_provider.dart';
 import '../utils/card_styles.dart';
+import '../utils/fisa_actions.dart';
 import '../utils/season_actions.dart';
 import '../widgets/grape_bunch.dart';
 import '../widgets/nav_card.dart';
@@ -61,20 +62,26 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               for (final s in Sortiment.values)
-                Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 32,
-                      backgroundColor: sortimentColor(s)
-                          .withValues(alpha: 0.15),
-                      child: GrapeBunchIcon(color: sortimentColor(s), size: 40),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      s.label,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                  ],
+                GestureDetector(
+                  onTap: () => editFisaDialog(context, provider, sezon, s),
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 32,
+                        backgroundColor: sortimentColor(s)
+                            .withValues(alpha: 0.15),
+                        child: GrapeBunchIcon(
+                          color: sortimentColor(s),
+                          size: 40,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        s.label,
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                    ],
+                  ),
                 ),
             ],
           ),

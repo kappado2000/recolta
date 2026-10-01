@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 import '../models/cumparator.dart';
+import '../models/fisa_sortiment.dart';
 import '../models/grup.dart';
 import '../models/sezon.dart';
 import '../models/sortiment.dart';
@@ -108,6 +109,17 @@ class WineProvider extends ChangeNotifier {
 
   void setPricePerKgRoze(Sezon sezon, double value) {
     sezon.pricePerKgRoze = value;
+    _persist(sezon);
+    notifyListeners();
+  }
+
+  // ---- Fișe de producție (per sortiment) ----
+
+  FisaSortiment fisaPentru(Sezon sezon, Sortiment s) =>
+      sezon.fise[s] ?? FisaSortiment();
+
+  void setFisaSortiment(Sezon sezon, Sortiment s, FisaSortiment fisa) {
+    sezon.fise[s] = fisa;
     _persist(sezon);
     notifyListeners();
   }
