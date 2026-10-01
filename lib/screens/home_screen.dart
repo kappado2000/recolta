@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/wine_provider.dart';
-import '../utils/formatters.dart';
+import '../utils/card_styles.dart';
+import '../utils/season_actions.dart';
+import '../widgets/nav_card.dart';
 import '../widgets/season_summary.dart';
 import 'buyers_screen.dart';
 import 'groups_screen.dart';
@@ -28,6 +30,11 @@ class HomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
+            icon: const Icon(Icons.archive_outlined),
+            tooltip: 'Arhivează sezonul',
+            onPressed: () => archiveSeasonDialog(context, provider),
+          ),
+          IconButton(
             icon: const Icon(Icons.history),
             tooltip: 'Istoric',
             onPressed: () => Navigator.push(
@@ -43,122 +50,33 @@ class HomeScreen extends StatelessWidget {
           SeasonHeroCard(
             sezon: sezon,
             provider: provider,
-            onEditPrice: () => _editPrice(context, provider),
+            onEditPrice: () => editPriceDialog(context, provider, sezon),
           ),
           const SizedBox(height: 16),
           SeasonTotalsGrid(sezon: sezon, provider: provider),
           const SizedBox(height: 24),
-          _NavCard(
+          NavCard(
             icon: Icons.people_outline,
             title: 'Cumpărători',
             subtitle: '${sezon.cumparatori.length} înregistrați',
+            color: memberAccentColor,
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const BuyersScreen()),
+              MaterialPageRoute(builder: (_) => BuyersScreen(an: sezon.an)),
             ),
           ),
           const SizedBox(height: 8),
-          _NavCard(
+          NavCard(
             icon: Icons.groups_outlined,
             title: 'Grupuri',
             subtitle: '${sezon.grupuri.length} create',
+            color: const Color(0xFF00897B),
             onTap: () => Navigator.push(
               context,
-              MaterialPageRoute(builder: (_) => const GroupsScreen()),
+              MaterialPageRoute(builder: (_) => GroupsScreen(an: sezon.an)),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Future<void> _editPrice(BuildContext context, WineProvider provider) async {
-    final controller = TextEditingController(
-      text: formatNumber(provider.sezonCurent.pricePerKg),
-    );
-    final rozeController = TextEditingController(
-      text: formatNumber(provider.sezonCurent.pricePerKgRoze),
-    );
-    final result = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Preț/Kg'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: controller,
-              autofocus: true,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              decoration: const InputDecoration(
-                labelText: 'Fetească / Savignion (Lei/Kg)',
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: rozeController,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              decoration: const InputDecoration(
-                labelText: 'Roze (Lei/Kg)',
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
-            child: const Text('Anulează'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('Salvează'),
-          ),
-        ],
-      ),
-    );
-    if (result == true) {
-      final value = double.tryParse(controller.text.replaceAll(',', '.'));
-      if (value != null && value >= 0) {
-        provider.setPricePerKg(value);
-      }
-      final valueRoze = double.tryParse(
-        rozeController.text.replaceAll(',', '.'),
-      );
-      if (valueRoze != null && valueRoze >= 0) {
-        provider.setPricePerKgRoze(valueRoze);
-      }
-    }
-  }
-}
-
-class _NavCard extends StatelessWidget {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final VoidCallback onTap;
-
-  const _NavCard({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        onTap: onTap,
-        leading: Icon(icon, color: const Color(0xFF6A1B58)),
-        title: Text(title),
-        subtitle: Text(subtitle),
-        trailing: const Icon(Icons.chevron_right),
       ),
     );
   }

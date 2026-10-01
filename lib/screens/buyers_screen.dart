@@ -7,16 +7,18 @@ import '../utils/cumparator_actions.dart';
 import '../widgets/cumparator_card.dart';
 
 class BuyersScreen extends StatelessWidget {
-  const BuyersScreen({super.key});
+  final int an;
+
+  const BuyersScreen({super.key, required this.an});
 
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<WineProvider>();
-    final sezon = provider.sezonCurent;
+    final sezon = provider.sezonPentruAn(an)!;
     final cumparatori = provider.ordonatiDupaAchizitie(sezon.cumparatori);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Cumpărători')),
+      appBar: AppBar(title: Text('Cumpărători — $an')),
       body: cumparatori.isEmpty
           ? const Center(child: Text('Niciun cumpărător încă'))
           : ListView.builder(
@@ -28,7 +30,7 @@ class BuyersScreen extends StatelessWidget {
                   key: ValueKey(c.id),
                   direction: DismissDirection.endToStart,
                   confirmDismiss: (_) => _confirmDelete(context, c.nume),
-                  onDismissed: (_) => provider.deleteCumparator(c.id),
+                  onDismissed: (_) => provider.deleteCumparator(sezon, c.id),
                   background: Container(
                     margin: const EdgeInsets.only(bottom: 8),
                     decoration: BoxDecoration(
@@ -45,16 +47,20 @@ class BuyersScreen extends StatelessWidget {
                     pricePerKgRoze: sezon.pricePerKgRoze,
                     index: index + 1,
                     accentColor: memberAccentColor,
-                    onTap: () =>
-                        editCumparatorDialog(context, provider, existing: c),
+                    onTap: () => editCumparatorDialog(
+                      context,
+                      provider,
+                      sezon,
+                      existing: c,
+                    ),
                     onToggleAchizitionat: () =>
-                        provider.toggleMustAchizitionat(c.id),
+                        provider.toggleMustAchizitionat(sezon, c.id),
                   ),
                 );
               },
             ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => editCumparatorDialog(context, provider),
+        onPressed: () => editCumparatorDialog(context, provider, sezon),
         child: const Icon(Icons.person_add_alt),
       ),
     );

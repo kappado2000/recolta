@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/wine_provider.dart';
-import '../widgets/cumparator_card.dart';
-import '../widgets/grup_card.dart';
+import '../utils/card_styles.dart';
+import '../utils/season_actions.dart';
+import '../widgets/nav_card.dart';
 import '../widgets/season_summary.dart';
+import 'buyers_screen.dart';
+import 'groups_screen.dart';
 
-/// Vizualizare needitabilă a unui sezon din istoric — an închis, doar de
-/// consultat, fără butoane de adăugare/ștergere/marcare.
+/// Detaliul unui sezon din istoric — la fel de editabil ca sezonul activ:
+/// preț, cumpărători și grupuri pot fi modificate sau șterse oricând.
 class SeasonHistoryDetailScreen extends StatelessWidget {
   final int an;
 
@@ -30,34 +33,35 @@ class SeasonHistoryDetailScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          SeasonHeroCard(sezon: sezon, provider: provider),
+          SeasonHeroCard(
+            sezon: sezon,
+            provider: provider,
+            onEditPrice: () => editPriceDialog(context, provider, sezon),
+          ),
           const SizedBox(height: 16),
           SeasonTotalsGrid(sezon: sezon, provider: provider),
-          if (sezon.grupuri.isNotEmpty) ...[
-            const SizedBox(height: 24),
-            Text('Grupuri', style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(height: 8),
-            ...sezon.grupuri.map(
-              (g) => GrupCard(grup: g, sezon: sezon, provider: provider),
-            ),
-          ],
           const SizedBox(height: 24),
-          Text('Cumpărători', style: Theme.of(context).textTheme.titleMedium),
-          const SizedBox(height: 8),
-          if (sezon.cumparatori.isEmpty)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: Text('Niciun cumpărător'),
-            )
-          else
-            ...sezon.cumparatori.indexed.map(
-              (entry) => CumparatorCard(
-                cumparator: entry.$2,
-                pricePerKg: sezon.pricePerKg,
-                pricePerKgRoze: sezon.pricePerKgRoze,
-                index: entry.$1 + 1,
-              ),
+          NavCard(
+            icon: Icons.people_outline,
+            title: 'Cumpărători',
+            subtitle: '${sezon.cumparatori.length} înregistrați',
+            color: memberAccentColor,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => BuyersScreen(an: an)),
             ),
+          ),
+          const SizedBox(height: 8),
+          NavCard(
+            icon: Icons.groups_outlined,
+            title: 'Grupuri',
+            subtitle: '${sezon.grupuri.length} create',
+            color: const Color(0xFF00897B),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => GroupsScreen(an: an)),
+            ),
+          ),
         ],
       ),
     );

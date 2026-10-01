@@ -13,12 +13,16 @@ import '../models/sortiment.dart';
 class WineProvider extends ChangeNotifier {
   static const _boxName = 'sezoane';
   static const _seedDoneKey = '_istoricPreluat';
+  static const _anActivKey = '_anActiv';
   final _uuid = const Uuid();
 
   Box? _box;
   final Map<int, Sezon> _sezoane = {};
+  late int _anActiv;
 
-  int get anCurent => DateTime.now().year;
+  /// Anul sezonului activ — implicit anul calendaristic curent, dar poate fi
+  /// avansat manual prin [arhiveazaSezonCurent].
+  int get anCurent => _anActiv;
 
   Future<void> init() async {
     _box = await Hive.openBox(_boxName);
@@ -37,7 +41,8 @@ class WineProvider extends ChangeNotifier {
       await _preiaIstoric();
       await _box!.put(_seedDoneKey, true);
     }
-    _sezoane.putIfAbsent(anCurent, () => Sezon(an: anCurent));
+    _anActiv = (_box!.get(_anActivKey) as int?) ?? DateTime.now().year;
+    _sezoane.putIfAbsent(_anActiv, () => Sezon(an: _anActiv));
     notifyListeners();
   }
 
@@ -70,70 +75,78 @@ class WineProvider extends ChangeNotifier {
     }
   }
 
-  /// Sezonul activ, mereu al anului calendaristic curent — singurul editabil.
+  /// Sezonul activ (vezi [anCurent]) — singurul cu acțiuni rapide din Home,
+  /// dar istoricul rămâne la fel de editabil prin aceleași metode.
   Sezon get sezonCurent => _sezoane[anCurent]!;
 
-  /// Anii din istoric (alții decât cel curent), cei mai recenți primii —
-  /// doar pentru vizualizare, fără editare.
+  /// Anii din istoric (alții decât cel curent), cei mai recenți primii.
   List<int> get aniIstoric =>
       _sezoane.keys.where((a) => a != anCurent).toList()
         ..sort((a, b) => b.compareTo(a));
 
   Sezon? sezonPentruAn(int an) => _sezoane[an];
 
-  void _persist() {
-    _box?.put(sezonCurent.an, sezonCurent.toMap());
-  }
-
-  void setPricePerKg(double value) {
-    sezonCurent.pricePerKg = value;
-    _persist();
+  /// Arhivează sezonul activ (rămâne disponibil, editabil, în istoric) și
+  /// activează un sezon nou, gol, pentru anul următor.
+  Future<void> arhiveazaSezonCurent() async {
+    final urmatorul = anCurent + 1;
+    _anActiv = urmatorul;
+    await _box!.put(_anActivKey, _anActiv);
+    _sezoane.putIfAbsent(urmatorul, () => Sezon(an: urmatorul));
     notifyListeners();
   }
 
-  void setPricePerKgRoze(double value) {
-    sezonCurent.pricePerKgRoze = value;
-    _persist();
+  void _persist(Sezon sezon) {
+    _box?.put(sezon.an, sezon.toMap());
+  }
+
+  void setPricePerKg(Sezon sezon, double value) {
+    sezon.pricePerKg = value;
+    _persist(sezon);
+    notifyListeners();
+  }
+
+  void setPricePerKgRoze(Sezon sezon, double value) {
+    sezon.pricePerKgRoze = value;
+    _persist(sezon);
     notifyListeners();
   }
 
   // ---- Cumpărători ----
 
-  void addCumparator(String nume) {
-    sezonCurent.cumparatori.add(Cumparator(id: _uuid.v4(), nume: nume));
-    _persist();
+  void addCumparator(Sezon sezon, String nume) {
+    sezon.cumparatori.add(Cumparator(id: _uuid.v4(), nume: nume));
+    _persist(sezon);
     notifyListeners();
   }
 
   void updateCumparator(
+    Sezon sezon,
     String id, {
     String? nume,
     double? kgFeteasca,
     double? kgSavignion,
     double? kgRoze,
   }) {
-    final c = sezonCurent.cumparatori.firstWhere((c) => c.id == id);
+    final c = sezon.cumparatori.firstWhere((c) => c.id == id);
     if (nume != null) c.nume = nume;
     if (kgFeteasca != null) c.kgFeteasca = kgFeteasca;
     if (kgSavignion != null) c.kgSavignion = kgSavignion;
     if (kgRoze != null) c.kgRoze = kgRoze;
-    _persist();
+    _persist(sezon);
     notifyListeners();
   }
 
-  void deleteCumparator(String id) {
-    sezonCurent.cumparatori.removeWhere((c) => c.id == id);
-    _persist();
+  void deleteCumparator(Sezon sezon, String id) {
+    sezon.cumparatori.removeWhere((c) => c.id == id);
+    _persist(sezon);
     notifyListeners();
   }
 
-  Cumparator? cumparatorById(String id) =>
-      sezonCurent.cumparatori.where((c) => c.id == id).firstOrNull;
-
-  void toggleMustAchizitionat(String id) {
-    final c = sezonCurent.cumparatori.firstWhere((c) => c.id == id);
+  void toggleMustAchizitionat(Sezon sezon, String id) {
+    final c = sezon.cumparatori.firstWhere((c) => c.id == id);
     c.mustAchizitionat = !c.mustAchizitionat;
-    _persist();
+    _persist(sezon);
     notifyListeners();
   }
 
@@ -148,41 +161,46 @@ class WineProvider extends ChangeNotifier {
 
   // ---- Grupuri ----
 
-  Grup addGrup(String nume) {
+  Grup addGrup(Sezon sezon, String nume) {
     final grup = Grup(
       id: _uuid.v4(),
       nume: nume,
-      colorIndex: sezonCurent.grupuri.length,
+      colorIndex: sezon.grupuri.length,
     );
-    sezonCurent.grupuri.add(grup);
-    _persist();
+    sezon.grupuri.add(grup);
+    _persist(sezon);
     notifyListeners();
     return grup;
   }
 
-  void renameGrup(String id, String nume) {
-    sezonCurent.grupuri.firstWhere((g) => g.id == id).nume = nume;
-    _persist();
+  void renameGrup(Sezon sezon, String id, String nume) {
+    sezon.grupuri.firstWhere((g) => g.id == id).nume = nume;
+    _persist(sezon);
     notifyListeners();
   }
 
-  void deleteGrup(String id) {
-    sezonCurent.grupuri.removeWhere((g) => g.id == id);
-    for (final c in sezonCurent.cumparatori) {
+  void deleteGrup(Sezon sezon, String id) {
+    sezon.grupuri.removeWhere((g) => g.id == id);
+    for (final c in sezon.cumparatori) {
       c.groupIds.remove(id);
     }
-    _persist();
+    _persist(sezon);
     notifyListeners();
   }
 
-  void setMembership(String cumparatorId, String groupId, bool isMember) {
-    final c = sezonCurent.cumparatori.firstWhere((c) => c.id == cumparatorId);
+  void setMembership(
+    Sezon sezon,
+    String cumparatorId,
+    String groupId,
+    bool isMember,
+  ) {
+    final c = sezon.cumparatori.firstWhere((c) => c.id == cumparatorId);
     if (isMember) {
       if (!c.groupIds.contains(groupId)) c.groupIds.add(groupId);
     } else {
       c.groupIds.remove(groupId);
     }
-    _persist();
+    _persist(sezon);
     notifyListeners();
   }
 
@@ -219,8 +237,4 @@ class WineProvider extends ChangeNotifier {
         0,
         (sum, c) => sum + c.valoare(sezon.pricePerKg, sezon.pricePerKgRoze),
       );
-}
-
-extension _FirstOrNull<T> on Iterable<T> {
-  T? get firstOrNull => isEmpty ? null : first;
 }

@@ -38,8 +38,8 @@ class CumparatorCard extends StatelessWidget {
     // Verde degrade = comandă neridicată încă (atenție, de bifat); gri
     // degrade = deja ridicată (rezolvată, nu mai atrage atenția).
     final gradient = achizitionat
-        ? [Colors.grey.shade500, Colors.grey.shade700]
-        : [Colors.green.shade400, Colors.green.shade700];
+        ? [Colors.grey.shade400, Colors.grey.shade800]
+        : [Colors.green.shade300, Colors.green.shade800];
 
     return Container(
       margin: const EdgeInsets.only(bottom: 8),

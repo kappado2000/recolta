@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/sezon.dart';
 import '../providers/wine_provider.dart';
 import '../widgets/grup_card.dart';
 import 'group_detail_screen.dart';
 
 class GroupsScreen extends StatelessWidget {
-  const GroupsScreen({super.key});
+  final int an;
+
+  const GroupsScreen({super.key, required this.an});
 
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<WineProvider>();
-    final sezon = provider.sezonCurent;
+    final sezon = provider.sezonPentruAn(an)!;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Grupuri')),
+      appBar: AppBar(title: Text('Grupuri — $an')),
       body: sezon.grupuri.isEmpty
           ? const Center(child: Text('Niciun grup creat încă'))
           : ListView.builder(
@@ -29,20 +32,25 @@ class GroupsScreen extends StatelessWidget {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => GroupDetailScreen(groupId: grup.id),
+                      builder: (_) =>
+                          GroupDetailScreen(an: an, groupId: grup.id),
                     ),
                   ),
                 );
               },
             ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _addDialog(context, provider),
+        onPressed: () => _addDialog(context, provider, sezon),
         child: const Icon(Icons.group_add_outlined),
       ),
     );
   }
 
-  Future<void> _addDialog(BuildContext context, WineProvider provider) async {
+  Future<void> _addDialog(
+    BuildContext context,
+    WineProvider provider,
+    Sezon sezon,
+  ) async {
     final controller = TextEditingController();
     final saved = await showDialog<bool>(
       context: context,
@@ -68,7 +76,7 @@ class GroupsScreen extends StatelessWidget {
     );
     final nume = controller.text.trim();
     if (saved == true && nume.isNotEmpty) {
-      provider.addGrup(nume);
+      provider.addGrup(sezon, nume);
     }
   }
 }

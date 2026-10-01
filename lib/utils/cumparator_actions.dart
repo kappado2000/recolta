@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../models/cumparator.dart';
+import '../models/sezon.dart';
 import '../providers/wine_provider.dart';
 
 /// Dialogul de creare/editare a unui cumpărător (nume + Kg pe fiecare
-/// sortiment) — reutilizat din ecranul Cumpărători și din fiecare grup.
+/// sortiment) — reutilizat din ecranul Cumpărători și din fiecare grup,
+/// pentru orice sezon (curent sau din istoric).
 Future<void> editCumparatorDialog(
   BuildContext context,
-  WineProvider provider, {
+  WineProvider provider,
+  Sezon sezon, {
   Cumparator? existing,
 }) async {
   final nameController = TextEditingController(text: existing?.nume ?? '');
@@ -107,9 +110,10 @@ Future<void> editCumparatorDialog(
   final kgRoze = double.tryParse(rozeController.text.replaceAll(',', '.')) ?? 0;
 
   if (existing == null) {
-    provider.addCumparator(nume);
-    final created = provider.sezonCurent.cumparatori.last;
+    provider.addCumparator(sezon, nume);
+    final created = sezon.cumparatori.last;
     provider.updateCumparator(
+      sezon,
       created.id,
       kgFeteasca: kgFeteasca,
       kgSavignion: kgSavignion,
@@ -117,6 +121,7 @@ Future<void> editCumparatorDialog(
     );
   } else {
     provider.updateCumparator(
+      sezon,
       existing.id,
       nume: nume,
       kgFeteasca: kgFeteasca,

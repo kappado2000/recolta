@@ -7,7 +7,7 @@ import '../models/sortiment.dart';
 const heroCardGradient = LinearGradient(
   begin: Alignment.topLeft,
   end: Alignment.bottomRight,
-  colors: [Color(0xFF6A1B58), Color(0xFF9C2B7A)],
+  colors: [Color(0xFF4A0E3C), Color(0xFFB13F8F)],
 );
 
 BoxDecoration heroCardDecoration({double radius = 20}) => BoxDecoration(
@@ -41,11 +41,23 @@ Color sortimentColor(Sortiment s) {
 Color sortimentTextColor(Sortiment s) =>
     s == Sortiment.feteasca ? const Color(0xFF4A2C0A) : Colors.white;
 
-LinearGradient cardGradientFor(Color color) => LinearGradient(
-  begin: Alignment.topLeft,
-  end: Alignment.bottomRight,
-  colors: [color.withValues(alpha: 0.85), color],
-);
+/// Gradient mai pronunțat decât o simplă variație de alpha — folosește
+/// luminozitate diferită (mai deschis sus-stânga, mai închis jos-dreapta)
+/// ca variația de culoare să fie clar vizibilă, nu doar o nuanță subtilă.
+LinearGradient cardGradientFor(Color color) {
+  final hsl = HSLColor.fromColor(color);
+  final light = hsl
+      .withLightness((hsl.lightness + 0.16).clamp(0.0, 1.0))
+      .toColor();
+  final dark = hsl
+      .withLightness((hsl.lightness - 0.16).clamp(0.0, 1.0))
+      .toColor();
+  return LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [light, dark],
+  );
+}
 
 /// Culoarea implicită a cardurilor de cumpărător, în lista generală
 /// (neasociată niciunui grup).

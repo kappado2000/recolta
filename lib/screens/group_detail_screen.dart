@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/sezon.dart';
 import '../providers/wine_provider.dart';
 import '../utils/card_styles.dart';
 import '../utils/cumparator_actions.dart';
@@ -8,14 +9,15 @@ import '../widgets/cumparator_card.dart';
 import '../widgets/season_summary.dart';
 
 class GroupDetailScreen extends StatelessWidget {
+  final int an;
   final String groupId;
 
-  const GroupDetailScreen({super.key, required this.groupId});
+  const GroupDetailScreen({super.key, required this.an, required this.groupId});
 
   @override
   Widget build(BuildContext context) {
     final provider = context.watch<WineProvider>();
-    final sezon = provider.sezonCurent;
+    final sezon = provider.sezonPentruAn(an)!;
     final grup = sezon.grupuri.where((g) => g.id == groupId).firstOrNull;
 
     if (grup == null) {
@@ -40,7 +42,7 @@ class GroupDetailScreen extends StatelessWidget {
             icon: const Icon(Icons.edit_outlined),
             tooltip: 'Redenumește',
             onPressed: () =>
-                _renameDialog(context, provider, groupId, grup.nume),
+                _renameDialog(context, provider, sezon, groupId, grup.nume),
           ),
           IconButton(
             icon: const Icon(Icons.delete_outline),
@@ -48,7 +50,7 @@ class GroupDetailScreen extends StatelessWidget {
             onPressed: () async {
               final confirmed = await _confirmDelete(context, grup.nume);
               if (confirmed && context.mounted) {
-                provider.deleteGrup(groupId);
+                provider.deleteGrup(sezon, groupId);
                 Navigator.pop(context);
               }
             },
@@ -72,7 +74,8 @@ class GroupDetailScreen extends StatelessWidget {
             children: [
               Text('Membri', style: Theme.of(context).textTheme.titleMedium),
               TextButton.icon(
-                onPressed: () => _selectMembers(context, provider, groupId),
+                onPressed: () =>
+                    _selectMembers(context, provider, sezon, groupId),
                 icon: const Icon(Icons.person_add_alt),
                 label: const Text('Adaugă membri'),
               ),
@@ -92,10 +95,14 @@ class GroupDetailScreen extends StatelessWidget {
                 pricePerKgRoze: sezon.pricePerKgRoze,
                 index: entry.$1 + 1,
                 accentColor: culoareGrup,
-                onTap: () =>
-                    editCumparatorDialog(context, provider, existing: entry.$2),
+                onTap: () => editCumparatorDialog(
+                  context,
+                  provider,
+                  sezon,
+                  existing: entry.$2,
+                ),
                 onToggleAchizitionat: () =>
-                    provider.toggleMustAchizitionat(entry.$2.id),
+                    provider.toggleMustAchizitionat(sezon, entry.$2.id),
               ),
             ),
         ],
@@ -127,6 +134,7 @@ class GroupDetailScreen extends StatelessWidget {
   Future<void> _renameDialog(
     BuildContext context,
     WineProvider provider,
+    Sezon sezon,
     String groupId,
     String currentName,
   ) async {
@@ -149,16 +157,16 @@ class GroupDetailScreen extends StatelessWidget {
       ),
     );
     if (newName != null && newName.isNotEmpty) {
-      provider.renameGrup(groupId, newName);
+      provider.renameGrup(sezon, groupId, newName);
     }
   }
 
   Future<void> _selectMembers(
     BuildContext context,
     WineProvider provider,
+    Sezon sezon,
     String groupId,
   ) async {
-    final sezon = provider.sezonCurent;
     final selected = {
       for (final c in sezon.cumparatori) c.id: c.groupIds.contains(groupId),
     };
@@ -181,7 +189,12 @@ class GroupDetailScreen extends StatelessWidget {
                             value: selected[c.id] ?? false,
                             onChanged: (v) {
                               setState(() => selected[c.id] = v ?? false);
-                              provider.setMembership(c.id, groupId, v ?? false);
+                              provider.setMembership(
+                                sezon,
+                                c.id,
+                                groupId,
+                                v ?? false,
+                              );
                             },
                           ),
                         )
