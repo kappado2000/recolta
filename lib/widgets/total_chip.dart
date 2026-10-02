@@ -34,6 +34,13 @@ class TotalChip extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: cardGradientFor(color),
         borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.12),
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
