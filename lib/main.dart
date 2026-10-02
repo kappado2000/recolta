@@ -27,7 +27,11 @@ class RecoltaApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF6A1B58)),
-          scaffoldBackgroundColor: const Color(0xFFF2F8F1),
+          scaffoldBackgroundColor: const Color(0xFFEAF5E3),
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Color(0xFFFCF3C7),
+            foregroundColor: Colors.black87,
+          ),
           useMaterial3: true,
         ),
         darkTheme: ThemeData(
@@ -35,7 +39,7 @@ class RecoltaApp extends StatelessWidget {
             seedColor: const Color(0xFF6A1B58),
             brightness: Brightness.dark,
           ),
-          scaffoldBackgroundColor: const Color(0xFF10180F),
+          scaffoldBackgroundColor: const Color(0xFF0D150C),
           useMaterial3: true,
         ),
         home: const HomeScreen(),
