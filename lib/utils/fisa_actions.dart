@@ -33,9 +33,11 @@ Future<void> editFisaDialog(
     context: context,
     builder: (ctx) => StatefulBuilder(
       builder: (ctx, setState) {
-        final zahar =
+        final zaharMust =
             double.tryParse(densitateController.text.replaceAll(',', '.')) ?? 0;
-        final tarie = zahar / 17;
+        final zaharAdaugat =
+            double.tryParse(zaharController.text.replaceAll(',', '.')) ?? 0;
+        final tarie = (zaharMust + zaharAdaugat) / 17;
 
         return AlertDialog(
           title: Text('Fișă ${sortiment.label}'),
@@ -55,20 +57,6 @@ Future<void> editFisaDialog(
                   ),
                   onChanged: (_) => setState(() {}),
                 ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 4, left: 4),
-                    child: Text(
-                      'Tărie estimată: ${tarie.toStringAsFixed(1)}% alcool '
-                      '(17 g zahăr/L ≈ 1°)',
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
                 const SizedBox(height: 16),
                 TextField(
                   controller: zaharController,
@@ -78,6 +66,21 @@ Future<void> editFisaDialog(
                   decoration: const InputDecoration(
                     labelText: 'Zahăr adăugat (g/litru)',
                     floatingLabelBehavior: labelBehavior,
+                  ),
+                  onChanged: (_) => setState(() {}),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 4, left: 4),
+                    child: Text(
+                      'Tărie estimată: ${tarie.toStringAsFixed(1)}% alcool '
+                      '(zahăr must + adăugat, 17 g/L ≈ 1°)',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),

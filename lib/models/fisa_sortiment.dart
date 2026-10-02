@@ -15,9 +15,9 @@ class FisaSortiment {
   });
 
   /// Tăria alcoolică estimată (%), după regula uzuală în vinificația de
-  /// casă: 17 g zahăr/litru de must produc 1 grad de alcool (ex. 170 g/L
-  /// → 10% alcool).
-  double get tarieAlcoolica => densitateZahar / 17;
+  /// casă: 17 g zahăr/litru produc 1 grad de alcool (ex. 170 g/L → 10%).
+  /// Include atât zahărul din must, cât și cel adăugat — ambele fermentează.
+  double get tarieAlcoolica => (densitateZahar + zaharLaLitru) / 17;
 
   Map<String, dynamic> toMap() => {
     'densitateZahar': densitateZahar,
