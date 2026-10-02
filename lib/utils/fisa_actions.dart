@@ -31,68 +31,91 @@ Future<void> editFisaDialog(
 
   final saved = await showDialog<bool>(
     context: context,
-    builder: (ctx) => AlertDialog(
-      title: Text('Fișă ${sortiment.label}'),
-      content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: densitateController,
-              autofocus: true,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              decoration: const InputDecoration(
-                labelText: 'Densitate zahăr must (°Oe)',
-                floatingLabelBehavior: labelBehavior,
-              ),
+    builder: (ctx) => StatefulBuilder(
+      builder: (ctx, setState) {
+        final zahar =
+            double.tryParse(densitateController.text.replaceAll(',', '.')) ?? 0;
+        final tarie = zahar / 17;
+
+        return AlertDialog(
+          title: Text('Fișă ${sortiment.label}'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextField(
+                  controller: densitateController,
+                  autofocus: true,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: 'Zahăr în must (g/litru)',
+                    floatingLabelBehavior: labelBehavior,
+                  ),
+                  onChanged: (_) => setState(() {}),
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 4, left: 4),
+                    child: Text(
+                      'Tărie estimată: ${tarie.toStringAsFixed(1)}% alcool '
+                      '(17 g zahăr/L ≈ 1°)',
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: zaharController,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: 'Zahăr adăugat (g/litru)',
+                    floatingLabelBehavior: labelBehavior,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: drojdieController,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  decoration: const InputDecoration(
+                    labelText: 'Drojdie / damigeană 50L (g)',
+                    floatingLabelBehavior: labelBehavior,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: observatiiController,
+                  maxLines: 3,
+                  decoration: const InputDecoration(
+                    labelText: 'Observații',
+                    floatingLabelBehavior: labelBehavior,
+                    alignLabelWithHint: true,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: zaharController,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              decoration: const InputDecoration(
-                labelText: 'Zahăr adăugat (g/litru)',
-                floatingLabelBehavior: labelBehavior,
-              ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Anulează'),
             ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: drojdieController,
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              decoration: const InputDecoration(
-                labelText: 'Drojdie / damigeană 50L (g)',
-                floatingLabelBehavior: labelBehavior,
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: observatiiController,
-              maxLines: 3,
-              decoration: const InputDecoration(
-                labelText: 'Observații',
-                floatingLabelBehavior: labelBehavior,
-                alignLabelWithHint: true,
-              ),
+            FilledButton(
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('Salvează'),
             ),
           ],
-        ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(ctx, false),
-          child: const Text('Anulează'),
-        ),
-        FilledButton(
-          onPressed: () => Navigator.pop(ctx, true),
-          child: const Text('Salvează'),
-        ),
-      ],
+        );
+      },
     ),
   );
 
