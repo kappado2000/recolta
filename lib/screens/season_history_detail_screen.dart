@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/wine_provider.dart';
 import '../utils/card_styles.dart';
+import '../utils/export_actions.dart';
 import '../utils/season_actions.dart';
 import '../widgets/nav_card.dart';
 import '../widgets/season_summary.dart';
@@ -29,7 +30,16 @@ class SeasonHistoryDetailScreen extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text('Sezon $an')),
+      appBar: AppBar(
+        title: Text('Sezon $an'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.ios_share),
+            tooltip: 'Exportă documente',
+            onPressed: () => showExportMenu(context, provider, sezon),
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

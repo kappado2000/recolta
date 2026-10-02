@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../models/sortiment.dart';
 import '../providers/wine_provider.dart';
 import '../utils/card_styles.dart';
+import '../utils/export_actions.dart';
 import '../utils/fisa_actions.dart';
 import '../utils/season_actions.dart';
 import '../widgets/grape_bunch.dart';
@@ -32,6 +33,11 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.ios_share),
+            tooltip: 'Exportă documente',
+            onPressed: () => showExportMenu(context, provider, sezon),
+          ),
           IconButton(
             icon: const Icon(Icons.archive_outlined),
             tooltip: 'Arhivează sezonul',
