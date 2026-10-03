@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../models/sezon.dart';
-import '../utils/card_styles.dart';
 import 'fermentatie_icon.dart';
 
 /// Cardul de fermentație: zilele trecute de la început, iconița fermentației
@@ -20,9 +19,13 @@ class FermentatieCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
-        gradient: cardGradientFor(Colors.green.shade700),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF81C784), Color(0xFF1B5E20)],
+        ),
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -33,28 +36,29 @@ class FermentatieCard extends StatelessWidget {
         ],
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             'Fermentație',
-            style: textTheme.titleSmall?.copyWith(
+            style: textTheme.labelLarge?.copyWith(
               color: Colors.white.withValues(alpha: 0.9),
             ),
           ),
-          const SizedBox(height: 4),
           Text(
             zile == null ? 'Nesetată' : '$zile zile',
-            style: textTheme.headlineSmall?.copyWith(
+            style: textTheme.titleLarge?.copyWith(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 10),
-          const FermentatieIcon(color: Colors.white, size: 64),
-          const SizedBox(height: 10),
+          const SizedBox(height: 4),
+          const FermentatieIcon(color: Colors.white, size: 40),
+          const SizedBox(height: 4),
           Text(
             tumultos == null ? '' : 'Tumultuoasă: $tumultos zile',
-            style: textTheme.bodyMedium?.copyWith(
-              color: Colors.white.withValues(alpha: 0.9),
+            style: textTheme.bodySmall?.copyWith(
+              color: Colors.white.withValues(alpha: 0.95),
+              fontWeight: FontWeight.w600,
             ),
           ),
         ],
