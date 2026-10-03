@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/sortiment.dart';
 import '../providers/wine_provider.dart';
 import '../utils/card_styles.dart';
 import '../utils/export_actions.dart';
-import '../utils/fisa_actions.dart';
 import '../utils/season_actions.dart';
-import '../widgets/grape_bunch.dart';
 import '../widgets/nav_card.dart';
 import '../widgets/season_summary.dart';
+import '../widgets/sortiment_fise_row.dart';
 import 'buyers_screen.dart';
 import 'groups_screen.dart';
 import 'history_screen.dart';
@@ -64,33 +62,7 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(height: 16),
           SeasonTotalsGrid(sezon: sezon, provider: provider),
           const SizedBox(height: 24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              for (final s in Sortiment.values)
-                GestureDetector(
-                  onTap: () => editFisaDialog(context, provider, sezon, s),
-                  child: Column(
-                    children: [
-                      CircleAvatar(
-                        radius: 32,
-                        backgroundColor: sortimentColor(s)
-                            .withValues(alpha: 0.15),
-                        child: GrapeBunchIcon(
-                          color: sortimentColor(s),
-                          size: 40,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        s.label,
-                        style: Theme.of(context).textTheme.labelSmall,
-                      ),
-                    ],
-                  ),
-                ),
-            ],
-          ),
+          SortimentFiseRow(sezon: sezon, provider: provider),
           const SizedBox(height: 24),
           NavCard(
             icon: Icons.people_outline,

@@ -7,6 +7,7 @@ import '../utils/export_actions.dart';
 import '../utils/season_actions.dart';
 import '../widgets/nav_card.dart';
 import '../widgets/season_summary.dart';
+import '../widgets/sortiment_fise_row.dart';
 import 'buyers_screen.dart';
 import 'groups_screen.dart';
 
@@ -50,6 +51,8 @@ class SeasonHistoryDetailScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           SeasonTotalsGrid(sezon: sezon, provider: provider),
+          const SizedBox(height: 24),
+          SortimentFiseRow(sezon: sezon, provider: provider),
           const SizedBox(height: 36),
           NavCard(
             icon: Icons.people_outline,
