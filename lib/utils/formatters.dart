@@ -7,6 +7,7 @@ final _leiFormat = NumberFormat.currency(
 );
 final _numberFormat = NumberFormat('#,##0.##', 'ro_RO');
 final dateTimeFormat = DateFormat('dd.MM.yyyy HH:mm');
+final dateFormat = DateFormat('dd.MM.yyyy');
 
 String formatLei(double amount) => _leiFormat.format(amount);
 

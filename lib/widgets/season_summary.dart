@@ -5,6 +5,7 @@ import '../models/sortiment.dart';
 import '../providers/wine_provider.dart';
 import '../utils/card_styles.dart';
 import '../utils/formatters.dart';
+import '../utils/productie_actions.dart';
 import 'amount_text.dart';
 import 'total_chip.dart';
 
@@ -116,24 +117,49 @@ class SeasonTotalsGrid extends StatelessWidget {
         Row(
           children: [
             Expanded(
-              child: TotalChip(
-                label: 'Drojdie necesară',
-                value: '${formatNumber(provider.totalDrojdie(sezon))} g',
-                color: Colors.brown,
+              child: GestureDetector(
+                onTap: () => showDrojdieInfo(context),
+                child: TotalChip(
+                  label: 'Drojdie necesară',
+                  value: '${formatNumber(provider.totalDrojdie(sezon))} g',
+                  color: Colors.brown,
+                ),
               ),
             ),
             const SizedBox(width: 8),
             Expanded(
-              child: TotalChip(
-                label: 'Damigene',
-                value: formatNumber(provider.totalDamigene(sezon)),
-                color: Colors.blueGrey,
+              child: GestureDetector(
+                onTap: () => showDamigeneCalculator(context, provider, sezon),
+                child: TotalChip(
+                  label: 'Damigene',
+                  value: formatNumber(provider.totalDamigene(sezon)),
+                  color: Colors.blueGrey,
+                ),
               ),
             ),
           ],
         ),
+        const SizedBox(height: 8),
+        GestureDetector(
+          onTap: () => editFermentatieDialog(context, provider, sezon),
+          child: TotalChip(
+            label: 'Fermentație',
+            value: _zileFermentatie(sezon),
+            color: const Color(0xFF5D4037),
+          ),
+        ),
       ],
     );
+  }
+
+  String _zileFermentatie(Sezon sezon) {
+    final f = sezon.fermentatie;
+    final zile = f.zileDeLaInceput(DateTime.now());
+    if (zile == null) return 'Nesetată';
+    final tumultos = f.zileTumultoasa;
+    return tumultos == null
+        ? '$zile zile'
+        : '$zile zile · tumultuoasă $tumultos zile';
   }
 }
 

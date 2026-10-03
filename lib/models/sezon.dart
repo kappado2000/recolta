@@ -1,4 +1,5 @@
 import 'cumparator.dart';
+import 'fermentatie_sezon.dart';
 import 'fisa_sortiment.dart';
 import 'grup.dart';
 import 'sortiment.dart';
@@ -19,6 +20,9 @@ class Sezon {
   /// Fișa de producție (densitate zahăr, dozaje, observații) per sortiment.
   Map<Sortiment, FisaSortiment> fise;
 
+  /// Datele fermentației mustului din acest sezon.
+  FermentatieSezon fermentatie;
+
   Sezon({
     required this.an,
     this.pricePerKg = 0,
@@ -26,10 +30,12 @@ class Sezon {
     List<Cumparator>? cumparatori,
     List<Grup>? grupuri,
     Map<Sortiment, FisaSortiment>? fise,
+    FermentatieSezon? fermentatie,
   }) : pricePerKgRoze = pricePerKgRoze ?? pricePerKg,
        cumparatori = cumparatori ?? [],
        grupuri = grupuri ?? [],
-       fise = fise ?? {};
+       fise = fise ?? {},
+       fermentatie = fermentatie ?? FermentatieSezon();
 
   Map<String, dynamic> toMap() => {
     'an': an,
@@ -38,6 +44,7 @@ class Sezon {
     'cumparatori': cumparatori.map((c) => c.toMap()).toList(),
     'grupuri': grupuri.map((g) => g.toMap()).toList(),
     'fise': fise.map((s, f) => MapEntry(s.name, f.toMap())),
+    'fermentatie': fermentatie.toMap(),
   };
 
   factory Sezon.fromMap(Map map) => Sezon(
@@ -58,5 +65,10 @@ class Sezon {
         FisaSortiment.fromMap(Map<String, dynamic>.from(value as Map)),
       ),
     ),
+    fermentatie: map['fermentatie'] is Map
+        ? FermentatieSezon.fromMap(
+            Map<String, dynamic>.from(map['fermentatie'] as Map),
+          )
+        : null,
   );
 }

@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:uuid/uuid.dart';
 
 import '../models/cumparator.dart';
+import '../models/fermentatie_sezon.dart';
 import '../models/fisa_sortiment.dart';
 import '../models/grup.dart';
 import '../models/sezon.dart';
@@ -120,6 +121,12 @@ class WineProvider extends ChangeNotifier {
 
   void setFisaSortiment(Sezon sezon, Sortiment s, FisaSortiment fisa) {
     sezon.fise[s] = fisa;
+    _persist(sezon);
+    notifyListeners();
+  }
+
+  void setFermentatie(Sezon sezon, FermentatieSezon fermentatie) {
+    sezon.fermentatie = fermentatie;
     _persist(sezon);
     notifyListeners();
   }
