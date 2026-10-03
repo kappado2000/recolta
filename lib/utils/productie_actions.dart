@@ -88,70 +88,74 @@ Future<void> showDamigeneCalculator(
           title: const Text('Damigene'),
           content: SizedBox(
             width: double.maxFinite,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Bifează membrii a căror must intră în calcul:',
-                    style: Theme.of(ctx).textTheme.bodySmall,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _linieCalcul(ctx, 'Must total', '${formatNumber(must)} L'),
+                _linieCalcul(
+                  ctx,
+                  'Damigene complete (50 L)',
+                  '$damigene'
+                      '${restDamigeana > 0 ? ' (+ ${formatNumber(restDamigeana)} L rest)' : ''}',
+                ),
+                _linieCalcul(
+                  ctx,
+                  'Drojdie necesară',
+                  '${formatNumber(drojdie)} g',
+                ),
+                _linieCalcul(
+                  ctx,
+                  'Must în maia — fază inițială',
+                  '${formatNumber(mustInitial)} ml',
+                ),
+                _linieCalcul(
+                  ctx,
+                  'Must adăugat treptat în maia',
+                  '${formatNumber(mustTreptat)} ml',
+                ),
+                const Divider(height: 24),
+                Text(
+                  'Bifează membrii a căror must intră în calcul:',
+                  style: Theme.of(ctx).textTheme.bodySmall,
+                ),
+                const SizedBox(height: 4),
+                if (sezon.cumparatori.isEmpty)
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    child: Text('Nu există cumpărători în acest sezon.'),
+                  )
+                else
+                  SizedBox(
+                    height: 260,
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: sezon.cumparatori.map((c) {
+                        final numeGrupuri = sezon.grupuri
+                            .where((g) => c.groupIds.contains(g.id))
+                            .map((g) => g.nume)
+                            .join(', ');
+                        return CheckboxListTile(
+                          dense: true,
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(c.nume),
+                          subtitle: Text(
+                            '${formatNumber(c.totalKg)} Kg'
+                            '${numeGrupuri.isEmpty ? '' : ' · $numeGrupuri'}',
+                          ),
+                          value: selectati.contains(c.id),
+                          onChanged: (v) => setState(() {
+                            if (v == true) {
+                              selectati.add(c.id);
+                            } else {
+                              selectati.remove(c.id);
+                            }
+                          }),
+                        );
+                      }).toList(),
+                    ),
                   ),
-                  const SizedBox(height: 4),
-                  if (sezon.cumparatori.isEmpty)
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      child: Text('Nu există cumpărători în acest sezon.'),
-                    )
-                  else
-                    ...sezon.cumparatori.map((c) {
-                      final numeGrupuri = sezon.grupuri
-                          .where((g) => c.groupIds.contains(g.id))
-                          .map((g) => g.nume)
-                          .join(', ');
-                      return CheckboxListTile(
-                        dense: true,
-                        contentPadding: EdgeInsets.zero,
-                        title: Text(c.nume),
-                        subtitle: Text(
-                          '${formatNumber(c.totalKg)} Kg'
-                          '${numeGrupuri.isEmpty ? '' : ' · $numeGrupuri'}',
-                        ),
-                        value: selectati.contains(c.id),
-                        onChanged: (v) => setState(() {
-                          if (v == true) {
-                            selectati.add(c.id);
-                          } else {
-                            selectati.remove(c.id);
-                          }
-                        }),
-                      );
-                    }),
-                  const Divider(height: 24),
-                  _linieCalcul(ctx, 'Must total', '${formatNumber(must)} L'),
-                  _linieCalcul(
-                    ctx,
-                    'Damigene complete (50 L)',
-                    '$damigene'
-                        '${restDamigeana > 0 ? ' (+ ${formatNumber(restDamigeana)} L rest)' : ''}',
-                  ),
-                  _linieCalcul(
-                    ctx,
-                    'Drojdie necesară',
-                    '${formatNumber(drojdie)} g',
-                  ),
-                  _linieCalcul(
-                    ctx,
-                    'Must în maia — fază inițială',
-                    '${formatNumber(mustInitial)} ml',
-                  ),
-                  _linieCalcul(
-                    ctx,
-                    'Must adăugat treptat în maia',
-                    '${formatNumber(mustTreptat)} ml',
-                  ),
-                ],
-              ),
+              ],
             ),
           ),
           actions: [

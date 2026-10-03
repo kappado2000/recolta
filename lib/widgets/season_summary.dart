@@ -145,7 +145,7 @@ class SeasonTotalsGrid extends StatelessWidget {
           child: TotalChip(
             label: 'Fermentație',
             value: _zileFermentatie(sezon),
-            color: const Color(0xFF5D4037),
+            color: Colors.green.shade700,
           ),
         ),
       ],
