@@ -205,9 +205,11 @@ Future<void> editFermentatieDialog(
           ValueChanged<DateTime?> onChanged,
         ) => ListTile(
           contentPadding: EdgeInsets.zero,
-          title: Text(eticheta),
+          title: Text(eticheta, style: Theme.of(ctx).textTheme.labelSmall),
           subtitle: Text(
             valoare == null ? 'Nesetată' : dateFormat.format(valoare),
+            style: Theme.of(ctx).textTheme.titleLarge
+                ?.copyWith(fontWeight: FontWeight.bold),
           ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,

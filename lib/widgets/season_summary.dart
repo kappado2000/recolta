@@ -7,6 +7,7 @@ import '../utils/card_styles.dart';
 import '../utils/formatters.dart';
 import '../utils/productie_actions.dart';
 import 'amount_text.dart';
+import 'fermentatie_card.dart';
 import 'total_chip.dart';
 
 /// Cardul principal cu totalurile sezonului (Kg, valoare, drojdie, damigene).
@@ -142,24 +143,10 @@ class SeasonTotalsGrid extends StatelessWidget {
         const SizedBox(height: 8),
         GestureDetector(
           onTap: () => editFermentatieDialog(context, provider, sezon),
-          child: TotalChip(
-            label: 'Fermentație',
-            value: _zileFermentatie(sezon),
-            color: Colors.green.shade700,
-          ),
+          child: FermentatieCard(sezon: sezon),
         ),
       ],
     );
-  }
-
-  String _zileFermentatie(Sezon sezon) {
-    final f = sezon.fermentatie;
-    final zile = f.zileDeLaInceput(DateTime.now());
-    if (zile == null) return 'Nesetată';
-    final tumultos = f.zileTumultoasa;
-    return tumultos == null
-        ? '$zile zile'
-        : '$zile zile · tumultuoasă $tumultos zile';
   }
 }
 
